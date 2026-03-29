@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PowerPal Clicker</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { background-color: #000; color: #fff; margin: 0; padding: 0; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; overflow: hidden; user-select: none; }
+        #score { font-size: 50px; font-weight: bold; margin-bottom: 20px; color: #f1c40f; }
+        .coin { width: 200px; height: 200px; background: radial-gradient(circle, #f1c40f 0%, #d35400 100%); border-radius: 50%; border: 8px solid #fff; display: flex; align-items: center; justify-content: center; font-size: 80px; cursor: pointer; touch-action: manipulation; transition: transform 0.1s; }
+        .coin:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+    <div id="score">0</div>
+    <div class="coin" onclick="tap()">⚡</div>
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        let count = 0;
+        function tap() {
+            count++;
+            document.getElementById('score').innerText = count;
+            if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('medium');
+        }
+    </script>
+</body>
+</html>
